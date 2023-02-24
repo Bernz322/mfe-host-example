@@ -44,7 +44,7 @@ module.exports = (_, argv) => ({
       name: "mfe_host_example",
       filename: "remoteEntry.js",
       remotes: {
-        "core": "core@https://mfe-host-example.vercel.app/remoteEntry.js"
+        "core": "core@https://microfrontend-core-prod.vercel.app/remoteEntry.js"
       },
       exposes: {},
       shared: {
