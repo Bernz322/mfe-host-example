@@ -2,9 +2,9 @@ const HtmlWebPackPlugin = require("html-webpack-plugin");
 const ModuleFederationPlugin = require("webpack/lib/container/ModuleFederationPlugin");
 
 const deps = require("./package.json").dependencies;
-module.exports = {
+module.exports = (_, argv) => ({
   output: {
-    publicPath: "http://localhost:9000/",
+    publicPath: argv.mode === "development" ? "http://localhost:9000/" : "https://mfe-host-example.vercel.app/",
   },
 
   resolve: {
@@ -44,7 +44,7 @@ module.exports = {
       name: "mfe_host_example",
       filename: "remoteEntry.js",
       remotes: {
-        "core": "core@https://microfrontend-core-prod.vercel.app/remoteEntry.js"
+        "core": "core@http://localhost:4000/remoteEntry.js"
       },
       exposes: {},
       shared: {
@@ -63,4 +63,4 @@ module.exports = {
       template: "./src/index.html",
     }),
   ],
-};
+});
